@@ -83,6 +83,10 @@ p{
   padding: 3% 12.5% 3% 12.5%;
 }
 
+#map {
+  height: 400px;
+}
+
 #about-app{
   background-color: white;
   border: 4px;

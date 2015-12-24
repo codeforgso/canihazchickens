@@ -39,14 +39,58 @@
     <div id="app">
       <h2>Insert your Address</h2>
         <div id="address-input">
-          <input id="address" type="text" placeholder="Your Address">  <input type="button" value="Submit">
+          <input id="address" type="textbox" placeholder="Your Address">
+          <input id="submit" type="button" value="Geocode">
+
+
         </div>
     </div>
   </section>
   </div>
 
   <div id="pic1">
-    <img src="img/Lego1.jpg" alt="wtf"/>
+    <img src="img/eggs1.jpg" alt="wtf"/>
+  </div>
+
+  <div id="about">
+    <section id="about-app">
+        <h2>About this App</h2>
+        <p>This app was designed to be able to tell residents of Greensboro, NC whether or not they are allowed to have chickens based on their address. This is solely based on the Greensboro ordinance for fully grown chickens.It is important to note that Rosters or male chickens are not allowed in Greensboro. If there are any questions please consult the !!!!!Greeensboro Chicken Ordiance!!!!! or call <a href="tel:3363732489">336-373-2489</a></p>
+      </section>
+
+      <div id="map">
+      <script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 11,
+      center: {lat: 36.0876068, lng: -79.8285789}
+    });
+    var geocoder = new google.maps.Geocoder();
+
+    document.getElementById('submit').addEventListener('click', function() {
+      geocodeAddress(geocoder, map);
+    });
+  }
+
+  function geocodeAddress(geocoder, resultsMap) {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        resultsMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+      </script>
+      </div>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJBH17TtAJid3ZOumVhUC8T-oAA7e7nzI&signed_in=true&callback=initMap"
+          async defer></script>
   </div>
 
     <div id="results">
@@ -57,17 +101,8 @@
     </div>
 
     <div id="pic2">
-      <img src="img/Lego1.jpg" alt="wtf"/>
+      <img src="img/eggs2.jpg" alt="wtf"/>
     </div>
-
-    <div id="about">
-      <section id="about-app">
-          <h2>About this App</h2>
-          <p>This app was designed to be able to tell residents of Greensboro, NC whether or not they are allowed to have chickens based on their address. This is solely based on the Greensboro ordinance for fully grown chickens.It is important to note that Rosters or male chickens are not allowed in Greensboro. If there are any questions please consult the !!!!!Greeensboro Chicken Ordiance!!!!! or call <a href="tel:3363732489">336-373-2489</a></p>
-        </section>
-    </div>
-
-
 
     <footer>
       <p>Code for Greensboro and the creators of this app are not responsible for any of the results that may come from you obtaining chickens and is not meant for any other types of livestock</p>

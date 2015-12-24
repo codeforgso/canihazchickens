@@ -7,9 +7,9 @@
 
 //start a function that declares a var for the user input
 function{
-  var userInput = $("address").var();
+  var userInput = $("#address").var();
   var lotSpecs = userInput(//square footage); //search for lot in database and find the column associated with the sqft of the lot
-  var zoning = userInput(//type of zone)
+  var zoning = userInput(//type of zone);
 }
 
 //if the address is not found return that the address cannot be found
